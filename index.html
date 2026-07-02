@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>               <!--  HINT : Main tag to hold important info  -->
+    <meta charset="UTF-8" />              <!--  HINT : SEO Improvement Tags  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />              <!--  HINT : SEO Improvement Tags  -->
+    <title>Anjani Datir | Web Developer Portfolio</title>    <!--  HINT : Tab Headinh  -->
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>              <!--  HINT : This tag contains the main Webpage Content  -->
+
+    <div id="game-cursor"></div>
+    <div id="flash"></div>
+    <canvas id="ink-particles"></canvas>
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- HUD -->
+    <div id="game-hud">               <!--  HINT : Sectioning tag for containers  -->
+        <div class="hud-box">ARCHIVES UNLOCKED: <span id="score">0</span>/3</div>               <!--  HINT : Sectioning tag (horizontal alignment) for containers  -->
+        <div class="hud-box blink" id="mission-text">MISSION: UNLOCK DOOR 1</div>
+    </div>
+
+    <!-- START SCREEN -->
+    <div id="front-gate">
+        <h1>Anjani Datir</h1>               <!-- HINT : Biggest Heading  -->
+        <p>A beginner web developer's first interactive portfolio.<br>Explore the room and unlock the archives to learn more about my project.</p>
+        <button class="btn-start interactable" id="btn-enter">START GAME</button>               <!--  HINT : Clickable Element  -->
+    </div>
+
+    <!-- 3D ROOM -->
+    <div id="scene">
+        <div id="room">
+            <div class="wall floor"></div>
+
+            <!-- Left Wall (Door 1 - Unlocked initially) -->
+            <div class="wall wall-left">               <!--  HINT : Sectioning tag for containers  -->
+                <h2 class="wall-title">Archive 01</h2>               <!--  HINT : Sub-Main heading Tag  -->
+                <div class="door-frame unlocked interactable" data-id="1" data-target="content-about">
+                    <div class="room-door">
+                        <h3>About Me</h3>               <!--  HINT : Sub-Main heading Tag  -->
+                        <div class="status-icon">[ UNLOCKED ]</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Wall (Door 2 - Locked) -->
+            <div class="wall wall-back">
+                <h2 class="wall-title">Archive 02</h2>
+                <div class="door-frame locked interactable" data-id="2" data-target="content-projects">
+                    <div class="room-door">
+                        <h3>Projects</h3>               <!--  HINT : Sub-Main heading Tag  -->
+                        <div class="status-icon">[ LOCKED ]</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Wall (Door 3 - Locked) -->
+            <div class="wall wall-right">
+                <h2 class="wall-title">Archive 03</h2>               <!--  HINT : Sub-Main heading Tag  -->
+                <div class="door-frame locked interactable" data-id="3" data-target="content-contact">
+                    <div class="room-door">
+                        <h3>Contact</h3>               <!--  HINT : Sub-Main heading Tag  -->
+                        <div class="status-icon">[ LOCKED ]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <div class="modal-overlay" id="overlay">
+        
+        <!-- PUZZLE TERMINAL -->
+        <div class="puzzle-content" id="puzzle-modal">
+            <button class="cancel-btn interactable">&times; ABORT</button>               <!--  HINT : Clickable Element  -->
+            <h2>SECURITY OVERRIDE</h2>
+            <!-- Using innerHTML in JS to render the question so HTML tags like <br> and <code> work perfectly -->
+            <p id="puzzle-question">Question goes here...</p>
+            <input type="text" class="puzzle-input interactable" id="puzzle-input" placeholder="enter answer..." autocomplete="off">               <!--  HINT : Element to take values from user  -->
+            <br>
+            <button class="btn-submit interactable" id="btn-submit-puzzle">DECRYPT</button>
+        </div>
+
+        <!-- CONTENT 1: ABOUT -->
+        <div class="modal-content" id="content-about">
+            <button class="close-btn interactable">&times; CLOSE TAB</button>
+            <h2>About Me</h2>
+            <p>Hello! I am <strong>Anjani Datir</strong>, a first-year student and beginner web developer currently learning HTML, CSS, and JavaScript.</p>
+            <p>This is my first project, created to practice interactive UI, animations, and user input handling in a playful portfolio format.</p>
+            <h3>What I am learning</h3>
+            <ul>
+                <li><strong>Frontend basics:</strong> HTML, CSS, Vanilla JavaScript.</li>
+                <li><strong>Interactive UI:</strong> DOM events, animations, and responsive layout.</li>
+                <li><strong>Growth mindset:</strong> building more projects and improving every week.</li>
+            </ul>
+        </div>
+
+        <!-- CONTENT 2: PROJECTS -->
+        <div class="modal-content" id="content-projects">               <!--  HINT : Sectioning tag for containers  -->
+            <button class="close-btn interactable">&times; CLOSE TAB</button>
+            <h2>Project Gallery</h2>
+            <h3>Level 1: 3D Portfolio Game</h3>
+            <p>My first web project uses HTML, CSS, and JavaScript to build an interactive portfolio with animated doors, puzzles, and modal content.</p>
+            <p>I made this project to practice DOM manipulation, event handling, and creative page design as I begin learning web development.</p>
+        </div>
+
+        <!-- CONTENT 3: CONTACT -->
+        <div class="modal-content" id="content-contact">
+            <button class="close-btn interactable">&times; CLOSE TAB</button>
+            <h2>Contact</h2>
+            <p>I’m learning web development and always open to feedback on my first projects.</p>
+            <br>
+            <p><strong>[ Email ]:</strong> anjanidatir@gmail.com</p>
+            <p><strong>[ GitHub ]:</strong> github.com/anjanidatir</p>
+            <p><strong>[ LinkedIn ]:</strong> www.linkedin.com/in/anjani-datir</p>
+        </div>
+
+    </div>
+
+    <!-- PARTY POPUP -->
+    <div id="party-popup">               <!--  HINT : Sectioning tag for containers  -->
+        <h2>MISSION ACCOMPLISHED!</h2>
+        <p>You have unlocked the full portfolio.</p>
+    </div>
+
+    <script src="script.js"></script>               <!--  HINT : JS file to add interactivity  -->
+
+</body>
+</html>
